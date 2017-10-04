@@ -30,9 +30,9 @@ public class UserRepo implements IUserRepo {
         }
     }
     public Boolean login(String username, String password) {
-        if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
-            return true;
-        }
+       // if (jdbc.equals()) {
+//            return true;
+//        }
         return false;
     }
 

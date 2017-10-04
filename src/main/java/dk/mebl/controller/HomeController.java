@@ -28,6 +28,12 @@ public class HomeController {
         return "login";
     }
 
+    @PostMapping("/login")
+    public String login(@ModelAttribute User user, Model model){
+//        user = userRepo.login()
+        return "login";
+    }
+
     @GetMapping("/register")
     public String register(){
         return "register";
