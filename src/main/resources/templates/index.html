@@ -3,11 +3,17 @@
 <head>
     <title>Welcome to the frontpage!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="C:\Users\Mathias\Dropbox\Datamatiker\SWC\Projects\Obligatorisk opgave SWC\src\main\resources\static\styleSheet.css"
+    th:href="@{styleSheet.css}"/>
 </head>
-<body>
+<body class="index-body">
 <h1>Welcome to the user system!</h1>
+<br />
+<br />
+<br />
+<div class="buttons">
 <button th:href="@{/login}" class="btn btn-primary">Login</button>
 <button th:href="@{/register}" class="btn btn-primary">Register</button>
-
+</div>
 </body>
 </html>
