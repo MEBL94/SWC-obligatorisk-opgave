@@ -8,10 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.logging.Logger;
+
 @Controller
 public class HomeController {
     @Autowired
     IUserRepo userRepo = new UserRepo();
+
+    private static Logger logger = Logger.getLogger(HomeController.class.getName());
 
     @GetMapping("/")
     public String index() {
@@ -40,9 +44,11 @@ public class HomeController {
         return "changePassword";
     }
     @PostMapping("/changePassword")
-    public String changePassword(@ModelAttribute User user) {
-        if ((userRepo.changePassword(user.getId(), user.getPassword()) == null) {
+    public String changePassword(@ModelAttribute User user, Model model) {
+        if ((userRepo.changePassword(user.getId(), user.getPassword()) != null)) {
+            return "userPage";
         }
+        model.addAttribute("error", true);
         return "changePassword";
     }
 }
