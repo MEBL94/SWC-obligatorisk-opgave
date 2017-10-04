@@ -15,4 +15,24 @@ public class HomeController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+    @GetMapping("/delete")
+    public String deleteUser(){
+        return "deleteUser";
+    }
+
+    @GetMapping("/changePassword")
+    public String changePassword(){
+        return "changePassword";
+    }
 }
