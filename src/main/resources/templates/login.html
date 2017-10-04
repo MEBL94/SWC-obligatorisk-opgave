@@ -8,7 +8,7 @@
           th:href="@{styleSheet.css}"/>
 </head>
 <body>
-<form>
+<form action="#" th:action="@{/login}" method="post" th:object="${user}">
 <div class="container">
     <h1 class="h1-login">Login</h1>
     <div th:if="${error}">

@@ -30,14 +30,22 @@ public class HomeController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute User user, Model model){
-        user = userRepo.login(user.getUsername(), user.getPassword());
+        userRepo.login(user.getUsername(), user.getPassword());
         model.addAttribute("error", true);
         return "login";
     }
 
     @GetMapping("/register")
-    public String register(){
+    public String register(Model model){
+        model.addAttribute("user", new User());
         return "register";
+    }
+
+    @PostMapping("/register")
+    public String register(@ModelAttribute User user, Model model){
+        userRepo.createUser(user);
+        System.out.println(user);
+        return "redirect:/";
     }
 
     @GetMapping("/delete")

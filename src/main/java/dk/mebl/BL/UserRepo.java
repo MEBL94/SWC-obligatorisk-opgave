@@ -14,6 +14,7 @@ public class UserRepo implements IUserRepo {
 
     public void createUser(User user) {
         jdbc.update("INSERT INTO user (username, address, email, password) VALUES ('"+ user.getUsername() + "','" + user.getAddress() + "','" + user.getEmail() + "','" + user.getPassword() + "')");
+        System.out.println("User has been created");
     }
 
     public String changePassword(int id, String password) {
@@ -30,9 +31,11 @@ public class UserRepo implements IUserRepo {
         }
     }
     public User login(String username, String password) {
-       // if (jdbc.equals()) {
-//            return true;
+//        if () {
+//            return user;
 //        }
+//        jdbc.("SELECT username AND password FROM user WHERE EXISTS (SELECT user WHERE username = '"+ username +"' AND password ='"+ password+"'");
+//        System.out.println(jdbc.update("SELECT username AND password FROM user WHERE EXISTS (SELECT user WHERE username = '"+ username +"' AND password ='"+ password+"'"));
         return null;
     }
 
