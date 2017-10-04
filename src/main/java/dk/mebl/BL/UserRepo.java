@@ -15,8 +15,10 @@ public class UserRepo implements IUserRepo {
         jdbc.update("INSERT INTO user (username, address, email, password) VALUES ('"+ user.getUsername() + "','" + user.getAddress() + "','" + user.getEmail() + "','" + user.getPassword() + "')");
     }
 
-    public void changePassword(String password) {
+    public void changePassword(User user) {
+        jdbc.update("UPDATE user SET " + "password = " + user.getPassword() + "WHERE id=" + user.getId());
     }
+
     public void deleteUser(User user, String password) {
 
     }
