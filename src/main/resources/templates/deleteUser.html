@@ -4,28 +4,22 @@
     <title>Delete user page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"
     th:href="@{styleSheet.css}"/>
+    <link rel="stylesheet"
+          href="C:\Users\salik\IdeaProjects\SWC-obligatorisk-opgave\src\main\resources\static\styleSheet.css"
+          th:href="@{styleSheet.css}"/>
 
 </head>
 
-
 <body class="index-body">
-
-<br>
-    <div class="container">
-        <h2>Confirm deleting account</h2>
-        <form action="/action_page.php">
-
-            <br>
-
-            <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-            </div>
-
-            <button type="submit" class="btn btn-success">Delete</button>
-        </form>
+<form>
+<div class="container">
+    <h2>Confirm deleting account</h2>
+    <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd"/>
     </div>
- <!-- Hej-->
-
+    <a type="button" class="btn btn-success">Delete</a>
+</div>
+</form>
 </body>
 </html>
