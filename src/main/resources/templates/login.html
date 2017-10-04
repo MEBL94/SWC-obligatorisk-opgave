@@ -3,9 +3,24 @@
 <head>
     <title>Login page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <link rel="stylesheet"
+          href="C:\Users\salik\IdeaProjects\SWC-obligatorisk-opgave\src\main\resources\static\styleSheet.css"
+          th:href="@{styleSheet.css}"/>
 </head>
 <body>
-
-    <button type="button" class="btn-success">Login</button>
+<form>
+<div class="container">
+    <h1>Login</h1>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="username" class="form-control" id="username"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password"/>
+    </div>
+    <a type="button" class="btn-success">Login</a>
+</div>
+</form>
 </body>
 </html>
