@@ -30,7 +30,8 @@ public class HomeController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute User user, Model model){
-//        user = userRepo.login()
+        user = userRepo.login(user.getUsername(), user.getPassword());
+        model.addAttribute("error", true);
         return "login";
     }
 

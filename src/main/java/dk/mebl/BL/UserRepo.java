@@ -29,11 +29,11 @@ public class UserRepo implements IUserRepo {
             jdbc.update("DELETE FROM user WHERE password = password");
         }
     }
-    public Boolean login(String username, String password) {
+    public User login(String username, String password) {
        // if (jdbc.equals()) {
 //            return true;
 //        }
-        return false;
+        return null;
     }
 
     public User readUser(int id) {
