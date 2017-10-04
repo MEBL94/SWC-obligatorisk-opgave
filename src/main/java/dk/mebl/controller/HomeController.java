@@ -2,12 +2,11 @@ package dk.mebl.controller;
 
 import dk.mebl.BL.IUserRepo;
 import dk.mebl.BL.UserRepo;
+import dk.mebl.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
@@ -20,7 +19,8 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login(Model model){
+        model.addAttribute("user", new User());
         return "login";
     }
 
@@ -35,8 +35,11 @@ public class HomeController {
     }
 
     @GetMapping("/changePassword")
-    public String changePassword(@RequestParam("password") String password, Model model){
-        model.addAttribute("password", userRepo.changePassword(password));
+    public String changePassword(@RequestParam("id") int id, Model model){
+        return "changePassword";
+    }
+    @PostMapping("/changePassword")
+    public String changePassword(@ModelAttribute String password) {
         return "changePassword";
     }
 }
