@@ -32,4 +32,12 @@ public class UserRepo implements IUserRepo {
         }
         return false;
     }
+
+    public User readUser(int id) {
+        if (user.getId() == id) {
+            jdbc.update("SELECT * FROM user WHERE id = " + user.getId());
+            return user;
+        }
+        return null;
+    }
 }
