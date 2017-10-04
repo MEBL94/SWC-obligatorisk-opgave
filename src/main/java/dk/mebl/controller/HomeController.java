@@ -36,10 +36,13 @@ public class HomeController {
 
     @GetMapping("/changePassword")
     public String changePassword(@RequestParam("id") int id, Model model){
+        model.addAttribute("user", userRepo.readUser(id));
         return "changePassword";
     }
     @PostMapping("/changePassword")
-    public String changePassword(@ModelAttribute String password) {
+    public String changePassword(@ModelAttribute User user) {
+        if ((userRepo.changePassword(user.getId(), user.getPassword()) == null) {
+        }
         return "changePassword";
     }
 }
