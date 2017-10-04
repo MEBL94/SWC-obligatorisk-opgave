@@ -4,7 +4,10 @@ import dk.mebl.BL.IUserRepo;
 import dk.mebl.BL.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -32,7 +35,8 @@ public class HomeController {
     }
 
     @GetMapping("/changePassword")
-    public String changePassword(){
+    public String changePassword(@RequestParam("password") String password, Model model){
+        model.addAttribute("password", userRepo.changePassword(password));
         return "changePassword";
     }
 }
