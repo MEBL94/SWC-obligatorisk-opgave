@@ -10,17 +10,20 @@ public class UserRepo implements IUserRepo {
 
     @Autowired
     private JdbcTemplate jdbc;
+    private User user = new User();
 
     public void createUser(User user) {
         jdbc.update("INSERT INTO user (username, address, email, password) VALUES ('"+ user.getUsername() + "','" + user.getAddress() + "','" + user.getEmail() + "','" + user.getPassword() + "')");
     }
 
-    public void changePassword(User user) {
-        jdbc.update("UPDATE user SET " + "password = " + user.getPassword() + "WHERE id=" + user.getId());
+    public void changePassword(String password) {
+        jdbc.update("UPDATE user SET " + "password = " + password + "WHERE id=" + user.getId());
     }
 
     public void deleteUser(User user, String password) {
-
+        if (password.equals(user.getPassword())) {
+            jdbc.update("DELETE FROM user WHERE password = password");
+        }
     }
     public void login(String username, String password) {
 
