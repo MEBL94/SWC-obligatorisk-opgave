@@ -1,21 +1,25 @@
 package dk.mebl.model;
 
 public class User {
-    private String id;
+    private int id;
     private String username;
     private String address;
     private String email;
     private String password;
 
-    public User() {
-
+    public User(int id, String username, String password, String address, String email) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.address = address;
+        this.email = email;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
