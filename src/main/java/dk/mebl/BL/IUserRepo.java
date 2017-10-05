@@ -7,5 +7,5 @@ public interface IUserRepo {
     String changePassword(int id, String password);
     boolean deleteUser(User user, String password);
     User login(String username, String password);
-    User readUser(int id);
+    User read(int id);
 }
