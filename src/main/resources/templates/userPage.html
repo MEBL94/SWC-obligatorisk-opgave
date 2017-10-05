@@ -2,13 +2,21 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>User Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="C:\Users\Mathias\Dropbox\Datamatiker\SWC\Projects\Obligatorisk opgave SWC\src\main\resources\static\styleSheet.css"
+          th:href="@{styleSheet.css}"/>
 </head>
 <body>
-<div th:if="${error}">
-    <div class="alert alert-danger">
-        Wrong credentials!
+
+<form>
+
+    <div class="container">
+        <h1 class="h1-login">Welcome</h1>
     </div>
-</div>
+
+</form>
+
+
 
 </body>
 </html>
