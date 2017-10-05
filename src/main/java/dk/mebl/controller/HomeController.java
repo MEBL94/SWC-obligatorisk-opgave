@@ -17,6 +17,8 @@ public class HomeController {
 
     private static Logger logger = Logger.getLogger(HomeController.class.getName());
 
+    private boolean isLoggedIn = false;
+
     @GetMapping("/")
     public String index() {
         return "index";
@@ -33,6 +35,7 @@ public class HomeController {
         System.out.println(user);
         if (userRepo.login(user.getUsername(), user.getPassword()) != null) {
             userRepo.login(user.getUsername(), user.getPassword());
+            isLoggedIn = true;
             return "userPage";
         }
         model.addAttribute("error", true);
@@ -54,8 +57,11 @@ public class HomeController {
 
     @GetMapping("/deleteUser")
     public String deleteUser(@RequestParam("id") int id, Model model){
-        model.addAttribute("user", userRepo.read(id));
-        return "deleteUser";
+        if (isLoggedIn) {
+            model.addAttribute("user", userRepo.read(id));
+            return "deleteUser";
+        }
+        return "redirect:/";
     }
 
     @PostMapping ("/deleteUser")
@@ -67,8 +73,11 @@ public class HomeController {
 
     @GetMapping("/changePassword")
     public String changePassword(@RequestParam("id") int id, Model model){
-        model.addAttribute("user", userRepo.read(id));
-        return "changePassword";
+        if (isLoggedIn) {
+            model.addAttribute("user", userRepo.read(id));
+            return "changePassword";
+        }
+        return "redirect:/";
     }
     @PostMapping("/changePassword")
     public String changePassword(@ModelAttribute User user, Model model) {
