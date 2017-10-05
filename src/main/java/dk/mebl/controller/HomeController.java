@@ -56,6 +56,7 @@ public class HomeController {
 
     @PostMapping ("/deleteUser")
     public String deleteUser(@ModelAttribute User user, Model model){
+        userRepo.deleteUser(user, user.getPassword());
         return "redirect:/";
     }
 
