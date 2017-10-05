@@ -31,10 +31,10 @@ public class HomeController {
     @PostMapping("/login")
     public String login(@ModelAttribute User user, Model model){
         System.out.println(user);
-//        if (userRepo.login(user.getUsername(), user.getPassword()) != null) {
-//            userRepo.login(user.getUsername(), user.getPassword());
-//            return "userPage";
-//        }
+        if (userRepo.login(user.getUsername(), user.getPassword()) != null) {
+            userRepo.login(user.getUsername(), user.getPassword());
+            return "userPage";
+        }
         model.addAttribute("error", true);
         return "login";
     }

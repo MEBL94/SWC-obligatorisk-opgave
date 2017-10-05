@@ -34,7 +34,7 @@ public class UserRepo implements IUserRepo {
             return false;
     }
     public User login(String username, String password) {
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user WHERE username = "+ username +" AND password ="+ password +"");
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user WHERE username = '"+ username +"' AND password ='"+ password +"'");
 
         if (sqlRowSet.next()){
             return new User(sqlRowSet.getInt("id"), sqlRowSet.getString("username"), sqlRowSet.getString("password"), sqlRowSet.getString("email"), sqlRowSet.getString("address"));
