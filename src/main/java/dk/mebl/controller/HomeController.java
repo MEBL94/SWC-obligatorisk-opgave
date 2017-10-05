@@ -18,7 +18,7 @@ public class HomeController {
     private static Logger logger = Logger.getLogger(HomeController.class.getName());
 
     @GetMapping("/")
-    public String index() {
+    public String indAex() {
         return "index";
     }
 
@@ -48,10 +48,17 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @GetMapping("/delete")
-    public String deleteUser(){
+    @GetMapping("/deleteUser")
+    public String deleteUser(@RequestParam("id") int id, Model model){
+        model.addAttribute("user", userRepo.readUser(id));
         return "deleteUser";
     }
+
+    @PostMapping ("/deleteUser")
+    public String deleteUser(@ModelAttribute User user, Model model){
+        return "redirect:/";
+    }
+
 
     @GetMapping("/changePassword")
     public String changePassword(@RequestParam("id") int id, Model model){

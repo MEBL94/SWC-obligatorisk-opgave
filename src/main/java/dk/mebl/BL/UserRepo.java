@@ -25,10 +25,12 @@ public class UserRepo implements IUserRepo {
         return null;
     }
 
-    public void deleteUser(User user, String password) {
+    public boolean deleteUser(User user, String password) {
         if (password.equals(user.getPassword())) {
             jdbc.update("DELETE FROM user WHERE password = password");
+            return true;
         }
+            return false;
     }
     public User login(String username, String password) {
 //        if () {
