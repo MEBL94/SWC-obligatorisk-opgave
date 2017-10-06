@@ -18,10 +18,11 @@ public class UserRepo implements IUserRepo {
         System.out.println("User has been created");
     }
 
-    public User changePassword(User user, User user2) {
-        if (read(user.getId()) == user && user == user2) {
-            jdbc.update("UPDATE user SET password = '" + user2.getPassword() + "' WHERE id= '" + user.getId() + "'");
-            return user2;
+    public User changePassword(User user, String newPassword) {
+        if (read(user.getId()) == user) {
+            user.setPassword(newPassword);
+            jdbc.update("UPDATE user SET password = '" + user.getPassword() + "' WHERE id= '" + user.getId() + "'");
+            return user;
         }
         return null;
     }
@@ -47,7 +48,7 @@ public class UserRepo implements IUserRepo {
 //            jdbc.update("SELECT * FROM user WHERE id = " + user.getId());
 //            return user;
 //        }
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user WHERE id =" + id + "");
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user WHERE id = + '" + id + "'");
 
         if (sqlRowSet.next()){
             System.out.println();

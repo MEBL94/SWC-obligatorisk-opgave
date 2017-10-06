@@ -6,6 +6,19 @@ public class User {
     private String address;
     private String email;
     private String password;
+    private String newPassword;
+    private String newPasswordConfirm;
+
+    public User(int id, String username, String password, String newPassword, String newPasswordConfirm, String address, String email) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.newPassword = newPassword;
+        this.newPasswordConfirm = newPasswordConfirm;
+        this.address = address;
+        this.email = email;
+    }
+
 
     public User(int id, String username, String password, String address, String email) {
         this.id = id;
@@ -57,6 +70,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
     }
 
     public void setPassword(String password) {
