@@ -25,13 +25,13 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(Model model) {
         model.addAttribute("user", new User());
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute User user, Model model){
+    public String login(@ModelAttribute User user, Model model) {
         System.out.println(user);
         if (userRepo.login(user.getUsername(), user.getPassword()) != null) {
             userRepo.login(user.getUsername(), user.getPassword());
@@ -43,20 +43,20 @@ public class HomeController {
     }
 
     @GetMapping("/register")
-    public String register(Model model){
+    public String register(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute User user, Model model){
+    public String register(@ModelAttribute User user, Model model) {
         userRepo.createUser(user);
         System.out.println(user);
         return "redirect:/";
     }
 
     @GetMapping("/deleteUser")
-    public String deleteUser(@RequestParam("id") int id, Model model){
+    public String deleteUser(@RequestParam("id") int id, Model model) {
         if (isLoggedIn) {
             model.addAttribute("user", userRepo.read(id));
             return "deleteUser";
@@ -64,32 +64,31 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @PostMapping ("/deleteUser")
-    public String deleteUser(@ModelAttribute User user, Model model){
+    @PostMapping("/deleteUser")
+    public String deleteUser(@ModelAttribute User user, Model model) {
         userRepo.deleteUser(user, user.getPassword());
         return "redirect:/";
     }
 
 
     @GetMapping("/changePassword")
-    public String changePassword(@RequestParam("id") int id, Model model){
+    public String changePassword(@RequestParam("id") int id, Model model) {
         if (isLoggedIn) {
             model.addAttribute("user", new User());
-            model.addAttribute("user2", userRepo.read(id));
             return "changePassword";
         }
         return "redirect:/";
     }
+
     @PostMapping("/changePassword")
     public String changePassword(@ModelAttribute User user, Model model) {
 
         //if ((userRepo.changePassword(user.getId(), user.getPassword()) != null)) {
-        if (userRepo.changePassword(user, user.getId(), user.getPassword())) {
-        {
-            userRepo.changePassword(user.getId(), user.getPassword());
-            return "userPage";
+        if (userRepo.changePassword(user, user.getPassword()) != null) {
+                userRepo.changePassword(user, user.getPassword());
+                return "userPage";
+            }
+            model.addAttribute("error", true);
+            return "changePassword";
         }
-        model.addAttribute("error", true);
-        return "changePassword";
     }
-}
