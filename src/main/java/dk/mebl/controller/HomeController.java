@@ -74,14 +74,18 @@ public class HomeController {
     @GetMapping("/changePassword")
     public String changePassword(@RequestParam("id") int id, Model model){
         if (isLoggedIn) {
-            model.addAttribute("user", userRepo.read(id));
+            model.addAttribute("user", new User());
             return "changePassword";
         }
         return "redirect:/";
     }
     @PostMapping("/changePassword")
     public String changePassword(@ModelAttribute User user, Model model) {
-        if ((userRepo.changePassword(user.getId(), user.getPassword()) != null)) {
+
+        //if ((userRepo.changePassword(user.getId(), user.getPassword()) != null)) {
+        if (user != null)
+        {
+            userRepo.changePassword(user.getId(), user.getPassword());
             return "userPage";
         }
         model.addAttribute("error", true);

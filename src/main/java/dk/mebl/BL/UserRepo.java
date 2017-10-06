@@ -19,7 +19,10 @@ public class UserRepo implements IUserRepo {
     }
 
     public String changePassword(int id, String password) {
-        if (read(id).equals(id)) {
+        id = user.getId();
+        password = user.getPassword();
+        if (read(id).equals(user)) {
+            user.setPassword(password);
             jdbc.update("UPDATE user SET " + "password = " + password + "WHERE id=" + user.getId());
             return password;
         }
