@@ -18,9 +18,9 @@ public class UserRepo implements IUserRepo {
         System.out.println("User has been created");
     }
 
-    public User changePassword(User user, String newPassword) {
-        if (read(user.getId()).equals(user)) {
-            jdbc.update("UPDATE user SET password = '" + newPassword + "' WHERE id= '" + user.getId() + "'");
+    public User changePassword(User user, User user2) {
+        if (read(user.getId()).equals(user) && user == user2) {
+            jdbc.update("UPDATE user SET password = '" + user2.getPassword() + "' WHERE id= '" + user.getId() + "'");
             return user;
         }
         return null;
