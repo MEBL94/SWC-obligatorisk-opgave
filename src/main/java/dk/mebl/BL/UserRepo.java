@@ -50,9 +50,19 @@ public class UserRepo implements IUserRepo {
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user WHERE id =" + id + "");
 
         if (sqlRowSet.next()){
+            System.out.println();
             return new User(sqlRowSet.getInt("id"), sqlRowSet.getString("username"), sqlRowSet.getString("password"), sqlRowSet.getString("email"), sqlRowSet.getString("address"));
         }
 
         return null;
+    }
+
+    public int getId(User user){
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT id FROM user WHERE username = '"+ user.getUsername() + "' AND password ='"+ user.getPassword() +"'");
+        if (sqlRowSet.next()) {
+            return sqlRowSet.getInt("id");
+        }
+
+        return 0;
     }
 }

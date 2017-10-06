@@ -57,8 +57,9 @@ public class HomeController {
 
     @GetMapping("/deleteUser")
     public String deleteUser(@RequestParam("id") int id, Model model) {
+
         if (isLoggedIn) {
-            model.addAttribute("user", userRepo.read(id));
+            model.addAttribute("user", new User());
             return "deleteUser";
         }
         return "redirect:/";

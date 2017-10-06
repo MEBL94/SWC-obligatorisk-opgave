@@ -14,8 +14,8 @@
 <div class="container">
     <h1 class="h1-login">Welcome</h1>
 <br />
-<div class="buttons">
-    <a type="button" th:href="@{/deleteUser}" class="btn btn-primary">Delete Account</a>
+<div class="buttons" th:object="${user}">
+    <a type="button" th:href="@{/deleteUser(id=${user.getId()})}" class="btn btn-primary">Delete Account</a>
     <a type="button" th:href="@{/changePassword(id=${user.id})}" class="btn btn-primary">Change Password</a>
 </div>
 
