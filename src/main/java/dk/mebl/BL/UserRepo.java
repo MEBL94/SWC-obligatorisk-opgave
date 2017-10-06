@@ -18,13 +18,11 @@ public class UserRepo implements IUserRepo {
         System.out.println("User has been created");
     }
 
-    public String changePassword(int id, String password) {
-        id = user.getId();
-        password = user.getPassword();
+    public User changePassword(User user, int id, String password, String newPassword) {
         if (read(id).equals(user)) {
-            user.setPassword(password);
-            jdbc.update("UPDATE user SET " + "password = " + password + "WHERE id=" + user.getId());
-            return password;
+            user.setPassword(newPassword);
+            jdbc.update("UPDATE user SET password = '" + newPassword + "' WHERE id= '" + id + "'");
+            return user;
         }
         return null;
     }

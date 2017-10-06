@@ -75,6 +75,7 @@ public class HomeController {
     public String changePassword(@RequestParam("id") int id, Model model){
         if (isLoggedIn) {
             model.addAttribute("user", new User());
+            model.addAttribute("user2", userRepo.read(id));
             return "changePassword";
         }
         return "redirect:/";
@@ -83,7 +84,7 @@ public class HomeController {
     public String changePassword(@ModelAttribute User user, Model model) {
 
         //if ((userRepo.changePassword(user.getId(), user.getPassword()) != null)) {
-        if (user != null)
+        if (userRepo.changePassword(user, user.getId(), user.getPassword())) {
         {
             userRepo.changePassword(user.getId(), user.getPassword());
             return "userPage";
