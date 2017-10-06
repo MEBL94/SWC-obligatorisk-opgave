@@ -60,7 +60,7 @@ public class HomeController {
 
     @GetMapping("/deleteUser")
     public String deleteUser(@RequestParam("id") int id, Model model) {
-
+        System.out.println(userRepo.read(id));
         if (isLoggedIn) {
             model.addAttribute("user", new User());
             return "deleteUser";
@@ -87,6 +87,7 @@ public class HomeController {
 
     @PostMapping("/changePassword")
     public String changePassword(@ModelAttribute User user, Model model) {
+        System.out.println(user);
         if (user.getPassword() == savedUser.getPassword()) {
                 userRepo.changePassword(savedUser, user.getPassword());
                 return "userPage";
