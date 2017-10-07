@@ -11,16 +11,23 @@
 </head>
 
 <body>
-<form>
-    <div class="container">
-        <h1 class="h1-login">Confirm deleting account</h1>
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password"/>
-        </div>
-        <input type="submit" value="Delete" class="btn btn-success" > </input>
 
-    </div>
-</form>
+<div class="container">
+    <h1 class="h1-login">Confirm deleting account</h1>
+    <form method="post" th:action="@{/deleteUser}"  th:object="${user}">
+        <div th:if="${error}">
+            <div class="alert alert-danger">
+                Invalid password.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" value="Enter password"  th:field="*{password}"/>
+        </div>
+        <input type="submit" value="Delete" class="btn btn-success" />
+
+    </form>
+</div>
+
 </body>
 </html>

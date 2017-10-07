@@ -21,15 +21,15 @@ public class UserRepo implements IUserRepo {
     public Boolean changePassword(User user, String newPassword) {
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT password FROM user WHERE password= '" + user.getPassword() + "'");
         if (sqlRowSet.next()) {
-            jdbc.update("UPDATE user SET password = '" + newPassword + "'");
+            jdbc.update("UPDATE user SET password = '" + newPassword + "' WHERE password = '"+ user.getPassword() +"'");
             return true;
         }
         return false;
     }
 
-    public boolean deleteUser(User user, String password) {
-        if (password.equals(user.getPassword())) {
-            jdbc.update("DELETE FROM user WHERE password = password");
+    public boolean deleteUser(User savedUser, String password) {
+        if (password.equals(savedUser.getPassword())) {
+            jdbc.update("DELETE FROM user WHERE password = '"+ password +"'");
             return true;
         }
             return false;

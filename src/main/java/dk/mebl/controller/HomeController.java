@@ -2,6 +2,7 @@ package dk.mebl.controller;
 
 import dk.mebl.BL.IUserRepo;
 import dk.mebl.BL.UserRepo;
+import dk.mebl.model.NewPassword;
 import dk.mebl.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,8 +60,8 @@ public class HomeController {
     }
 
     @GetMapping("/deleteUser")
-    public String deleteUser(@RequestParam("id") int id, Model model) {
-        System.out.println(userRepo.read(id));
+    public String deleteUser(Model model) {
+
         if (isLoggedIn) {
             model.addAttribute("user", new User());
             return "deleteUser";
@@ -69,27 +70,34 @@ public class HomeController {
     }
 
     @PostMapping("/deleteUser")
-    public String deleteUser(@ModelAttribute User user) {
-        userRepo.deleteUser(user, user.getPassword());
-        return "redirect:/";
+    public String deleteUser(@ModelAttribute User user, Model model) {
+        System.out.println(user.getPassword());
+        if(userRepo.deleteUser(savedUser, user.getPassword())){
+            userRepo.deleteUser(savedUser, user.getPassword());
+            return "redirect:/";
+        }
+        model.addAttribute("error", true);
+        return "deleteUser";
     }
 
 
     @GetMapping("/changePassword")
     public String changePassword(Model model) {
         if (isLoggedIn) {
-            model.addAttribute("user", new User());
-            model.addAttribute("password", new String());
+//            model.addAttribute("user", new User());
+            model.addAttribute("newPassword", new NewPassword());
             return "changePassword";
         }
         return "redirect:/";
     }
 
     @PostMapping("/changePassword")
-    public String changePassword(@ModelAttribute User user, Model model) {
-        System.out.println(user);
-        if (user.getPassword() == savedUser.getPassword()) {
-                userRepo.changePassword(savedUser, user.getPassword());
+    public String changePassword(@ModelAttribute NewPassword newPassword, Model model) {
+//        System.out.println(user);
+        System.out.println(newPassword);
+        if (newPassword.getOldPassword().equals(savedUser.getPassword()) && newPassword.getPassword1().equals(newPassword.getPassword2())) {
+                userRepo.changePassword(savedUser, newPassword.getPassword1());
+                savedUser.setPassword(newPassword.getPassword1());
                 return "userPage";
             }
             model.addAttribute("error", true);
