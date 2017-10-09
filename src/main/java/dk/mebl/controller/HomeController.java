@@ -100,6 +100,10 @@ public class HomeController {
                 savedUser.setPassword(newPassword.getPassword1());
                 return "userPage";
             }
+        if (!newPassword.getPassword1().equals(newPassword.getPassword2())) {
+            model.addAttribute("matchError", true);
+            return "changePassword";
+        }
             model.addAttribute("error", true);
             return "changePassword";
         }
