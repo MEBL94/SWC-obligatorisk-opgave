@@ -11,7 +11,6 @@ public class UserRepo implements IUserRepo {
 
     @Autowired
     private JdbcTemplate jdbc;
-    private User user = new User();
 
     public void createUser(User user) {
         jdbc.update("INSERT INTO user (username, address, email, password) VALUES ('"+ user.getUsername() + "','" + user.getAddress() + "','" + user.getEmail() + "','" + user.getPassword() + "')");
@@ -44,10 +43,6 @@ public class UserRepo implements IUserRepo {
     }
 
     public User read(int id) {
-//        if (user.getId() == id) {
-//            jdbc.update("SELECT * FROM user WHERE id = " + user.getId());
-//            return user;
-//        }
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user WHERE id = + '" + id + "'");
 
         if (sqlRowSet.next()){
@@ -56,14 +51,5 @@ public class UserRepo implements IUserRepo {
         }
 
         return null;
-    }
-
-    public int getId(User user){
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT id FROM user WHERE username = '"+ user.getUsername() + "' AND password ='"+ user.getPassword() +"'");
-        if (sqlRowSet.next()) {
-            return sqlRowSet.getInt("id");
-        }
-
-        return 0;
     }
 }

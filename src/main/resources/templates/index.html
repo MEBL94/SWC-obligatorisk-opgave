@@ -8,6 +8,11 @@
 </head>
 <body class="index-body">
 <h1 class="h1-login">Welcome to the user system!</h1>
+<div th:if="${deleteSuccess}">
+    <div class="alert alert-danger">
+        Account has been deleted
+    </div>
+</div>
 <br />
 <br />
 <br />

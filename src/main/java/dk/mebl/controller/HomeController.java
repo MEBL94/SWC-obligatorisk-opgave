@@ -18,8 +18,6 @@ public class HomeController {
 
     User savedUser = new User();
 
-    private static Logger logger = Logger.getLogger(HomeController.class.getName());
-
     private boolean isLoggedIn = false;
 
     @GetMapping("/")
@@ -74,8 +72,10 @@ public class HomeController {
         System.out.println(user.getPassword());
         if(userRepo.deleteUser(savedUser, user.getPassword())){
             userRepo.deleteUser(savedUser, user.getPassword());
-            return "redirect:/";
+            model.addAttribute("deleteSuccess", true);
+            return "index";
         }
+
         model.addAttribute("error", true);
         return "deleteUser";
     }
@@ -84,7 +84,6 @@ public class HomeController {
     @GetMapping("/changePassword")
     public String changePassword(Model model) {
         if (isLoggedIn) {
-//            model.addAttribute("user", new User());
             model.addAttribute("newPassword", new NewPassword());
             return "changePassword";
         }
@@ -93,11 +92,11 @@ public class HomeController {
 
     @PostMapping("/changePassword")
     public String changePassword(@ModelAttribute NewPassword newPassword, Model model) {
-//        System.out.println(user);
         System.out.println(newPassword);
         if (newPassword.getOldPassword().equals(savedUser.getPassword()) && newPassword.getPassword1().equals(newPassword.getPassword2())) {
                 userRepo.changePassword(savedUser, newPassword.getPassword1());
                 savedUser.setPassword(newPassword.getPassword1());
+                model.addAttribute("changeSuccess", true);
                 return "userPage";
             }
         if (!newPassword.getPassword1().equals(newPassword.getPassword2())) {
