@@ -80,7 +80,7 @@ public class HomeController {
         return "deleteUser";
     }
 
-//
+
     @GetMapping("/changePassword")
     public String changePassword(Model model) {
         if (isLoggedIn) {
